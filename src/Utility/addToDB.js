@@ -16,4 +16,4 @@ const addDataToDB = (id)=>{
 
 }
 
-export {addDataToDB}
+export {addDataToDB, getDataFormDB}

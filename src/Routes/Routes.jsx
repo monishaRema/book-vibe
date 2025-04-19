@@ -21,8 +21,13 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/listed-books',
+                loader:()=> fetch('./booksData.json'),
                 Component:ListedBooks
             },
+            {
+                path:'/pages-to-read',
+            },
+           
             {
                 path:'/bookDetails/:id',
                 loader:()=> fetch('./booksData.json'),

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const Book = ({book}) => {
 
-    const { bookId, bookName, author, image, review, rating, category, tags, yearOfPublishing, publisher, totalPages}= book;
+    const { bookId, bookName, author, image, rating, category, tags, yearOfPublishing}= book;
     return (
         <Link to={`/bookDetails/${bookId}`}>
         <div className='border border-gray-200 p-6 rounded-2xl flex flex-col justify-between'>
