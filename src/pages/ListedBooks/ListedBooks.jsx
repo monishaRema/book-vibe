@@ -7,6 +7,7 @@ import { getDataFormDB } from "../../Utility/addToDB";
 const ListedBooks = () => {
     const allBooks = useLoaderData();
     const [readList, setReadList] = useState([])
+    const [sort,setSort] = useState('')
 
     useEffect(() => {
         const readListData = getDataFormDB();
@@ -15,11 +16,31 @@ const ListedBooks = () => {
         setReadList(myReadList)
         
     }, [])
+
+    const handleSort = (sortType) => {
+      setSort(sortType)
+
+      if (sortType === 'page') {
+        const sortedBooks = [...readList].sort((a, b) => a.pages - b.pages);
+        setReadList(sortedBooks);
+      }else if(sortType === 'rating'){
+        const sortedBooks = [...readList].sort((a, b) => b.rating - a.rating);
+        setReadList(sortedBooks);
+      }
+
+    }
    
 
   return (
     <main className="main py-24">
               <div className="container max-w-[1210px] mx-auto px-5">
+              <details className="dropdown my-5 mx-auto">
+  <summary className="btn m-1">Sort by: {sort? sort: ''}</summary>
+  <ul className="menu dropdown-content bg-gray-300 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li onClick={handleSort('page')}><a>pages</a></li>
+    <li onClick={handleSort('rating')}><a>rating</a></li>
+  </ul>
+</details>
 
       <Tabs>
         <TabList>
